@@ -1,0 +1,42 @@
+9963776:                     Brightness:128
+9963777:                       Contrast:64
+9963778:                     Saturation:64
+9963779:                            Hue:0
+9963781:                         Volume:60928
+9963782:                        Balance:32768
+9963783:                           Bass:32768
+9963784:                         Treble:32768
+9963785:                           Mute:0
+10029312:                    Stream Type:0
+10029319:              Stream VBI Format:0
+10029412:       Audio Sampling Frequency:1
+10029413:                 Audio Encoding:1
+10029415:         Audio Layer II Bitrate:10
+10029417:              Audio Stereo Mode:0
+10029418:    Audio Stereo Mode Extension:0
+10029419:                 Audio Emphasis:0
+10029420:                      Audio CRC:0
+10029421:                     Audio Mute:0
+10029512:                 Video Encoding:1
+10029513:                   Video Aspect:1
+10029514:                 Video B Frames:2
+10029515:                 Video GOP Size:12
+10029516:              Video GOP Closure:1
+10029518:             Video Bitrate Mode:0
+10029519:                  Video Bitrate:135000
+10029520:             Video Peak Bitrate:8000000
+10029521:      Video Temporal Decimation:0
+10029522:                     Video Mute:0
+10029523:                 Video Mute YUV:32896
+10031104:            Spatial Filter Mode:0
+10031105:                 Spatial Filter:0
+10031106:       Spatial Luma Filter Type:1
+10031107:     Spatial Chroma Filter Type:1
+10031108:           Temporal Filter Mode:0
+10031109:                Temporal Filter:8
+10031110:             Median Filter Type:0
+10031111:     Median Luma Filter Minimum:0
+10031112:     Median Luma Filter Maximum:255
+10031113:   Median Chroma Filter Minimum:0
+10031114:   Median Chroma Filter Maximum:255
+10031115:      Insert Navigation Packets:0
