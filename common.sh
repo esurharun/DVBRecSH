@@ -1,5 +1,6 @@
 #!/bin/bash
 
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 SETCHANNELCMD=""
 
 DATE=`date "+%Y%m%d_%H%M%S"`
@@ -64,7 +65,7 @@ stop()
 
 start()
 {
-	sleep 2
+	sleep 3
  	 echo "Starting channel " ${CHANNEL} " ..." 
 	 ${COMMAND}  & 
          echo ${DATE} > ${START_FILE}
