@@ -15,7 +15,7 @@ TEMP_FILE=/tmp/ch${CHANNEL}-tmp.mpg
 
 #COMMAND="buffer -m 8192k -p 75 -i /dev/video${CHANNEL} -o ${TEMP_FILE}"
 PS_HEADER="/usr/bin/dvbstream -c ${CHANNEL}"
-R_CMD="/usr/bin/dvbstream -c ${CHANNEL} -ps -f ${FREQUENCY} -p ${POL} -s ${SYMBOLRATE} -D ${DISEQC} -I 2 -o ${AUDIOPID} ${VIDEOPID} | ffmpeg -i pipe: -target pal-vcd -async 44100 -y ${TEMP_FILE} > ${LOGFILE} 2>&1"
+R_CMD="/usr/bin/dvbstream -c ${CHANNEL} -ps -f ${FREQUENCY} -p ${POL} -s ${SYMBOLRATE} -D ${DISEQC} -I 2 -o ${AUDIOPID} ${VIDEOPID} 2>> ${LOGFILE} | ffmpeg -i pipe: -target pal-vcd -async 44100 -y ${TEMP_FILE} > ${LOGFILE} 2>&1"
 echo "${R_CMD}" > ${CMD_FILE}
 chmod +x ${CMD_FILE}
 COMMAND="${CMD_FILE}"
