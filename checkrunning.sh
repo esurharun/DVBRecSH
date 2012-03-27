@@ -1,26 +1,31 @@
 #!/bin/bash
 
-DISKID=""
+FAIL_STR="Not able to lock to the signal on the given frequency"
+FILE=""
+CHANNEL=""
 RUN=""
 
 checker()
 {
-  if [ -z "`ps auwx | grep buffer | grep -E $DISKID`" ] ; then
-   echo "`date` $DISKID stopped. Restarted" >> /root/output
-   $RUN
 
+  echo Checking $FILE ... 
+  if [ -f  $FILE ] ; then 
+	RES=`cat $FILE | grep "$FAIL_STR"`
+ 	 if [ -n "$RES" ] ; then
+  		 echo "`date` $CHANNEL is not started. Trying to restart." >> /opt/recserver/checker.log
+  		 $RUN
+	 else
+		echo "OK"
+	 fi
+  else
+	echo $FILE not exists..
   fi
 }
 
-DISKID="(diski1_1)"
-RUN="/opt/recserver/channel0.sh start"
-checker
-DISKID="(diski2_1)"
-RUN="/opt/recserver/channel1.sh start"
-checker
-DISKID="(diski3_1)"
-RUN="/opt/recserver/channel2.sh start"
-checker
-DISKID="(diski4_1)"
-RUN="/opt/recserver/channel3.sh start"
-checker
+for CH in 0 1 2
+do
+	FILE="/var/run/channel${CH}.log"
+	CHANNEL="Channel ${CH}"
+	RUN="/opt/recserver/channel${CH}.sh start"
+	checker
+done
