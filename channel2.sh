@@ -15,5 +15,10 @@ DISEQC=1
 
 CURR_DIR=`dirname $0`
 
+FLV_ENCODING_ENABLED=true
+FLV_CHANNELNAME="TRTTURK"
+FLV_RECPATH="/stdisk/FLV/${FLV_CHANNELNAME}/"
+`mkdir -p ${FLV_RECPATH}`
+
 source $CURR_DIR/common.sh
 

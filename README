@@ -1,3 +1,54 @@
 This is personal script stack to manage SKYSTAR HD2 DVB devices to record live stream by encoding with mpeg to pal-vcd format. 
 
+-----
 
+Installation of FFMPEG on Ubuntu for those scripts
+
+Install the Dependencies
+1. Uninstall x264, libx264-dev, and ffmpeg if they are already installed. Open a terminal and run the following (you can usually paste into a terminal with shift+ctrl+v). Copy and paste the whole code box for each step.
+Code:
+sudo apt-get remove ffmpeg x264 libx264-dev
+2. Get all of the packages you will need to install FFmpeg and x264 (you may need to enable the Universe and Multiverse repositories):
+Code:
+sudo apt-get update
+sudo apt-get install build-essential checkinstall git libfaac-dev libjack-jackd2-dev \
+  libmp3lame-dev libopencore-amrnb-dev libopencore-amrwb-dev libsdl1.2-dev libtheora-dev \
+  libva-dev libvdpau-dev libvorbis-dev libx11-dev libxfixes-dev texi2html yasm zlib1g-dev
+
+Install x264
+3. Get the current source files, compile, and install x264. (See using snapshots if you are having connection issues with the Git server.)
+Code:
+cd
+git clone git://git.videolan.org/x264
+cd x264
+./configure --enable-static
+make
+sudo checkinstall --pkgname=x264 --pkgversion="3:$(./version.sh | \
+    awk -F'[" ]' '/POINT/{print $4"+git"$5}')" --backup=no --deldoc=yes \
+    --fstrans=no --default
+
+Install libvpx (optional)
+4. This is used to encode VP8 video. If you follow this step, add --enable-libvpx to the FFmpeg ./configure line in step 5.
+Code:
+sudo apt-get remove libvpx-dev
+cd
+git clone http://git.chromium.org/webm/libvpx.git
+cd libvpx
+./configure
+make
+sudo checkinstall --pkgname=libvpx --pkgversion="1:$(date +%Y%m%d%H%M)-git" --backup=no \
+    --deldoc=yes --fstrans=no --default
+
+Install FFmpeg
+5. Get the most current source files, compile, and install FFmpeg.
+Code:
+cd
+git clone --depth 1 git://source.ffmpeg.org/ffmpeg
+cd ffmpeg
+./configure --enable-gpl --enable-libfaac --enable-libmp3lame --enable-libopencore-amrnb \
+    --enable-libopencore-amrwb --enable-libtheora --enable-libvorbis --enable-libx264 \
+    --enable-nonfree --enable-version3 --enable-x11grab
+make
+sudo checkinstall --pkgname=ffmpeg --pkgversion="5:$(date +%Y%m%d%H%M)-git" --backup=no \
+  --deldoc=yes --fstrans=no --default
+hash x264 ffmpeg ffplay ffprobe
